@@ -1,0 +1,19 @@
+- title("#{@collection.title}_熊猫优选")
+- head_desc("#{@collection.title},#{@collection.description} - 熊猫优选 xiongmao123.com")
+- keywords("熊猫123,熊猫优选,xiongmao123,#{@collection.title}")
+- path(@path)
+- h1(@collection.title)
+
+.wrapper
+  %div
+    %img{src: "#{@collection.img_url}"}
+    .collection-header-mask
+      %p.title #{@collection.title}
+      %p.sub-title #{@collection.description}
+      %span.icon-left-top
+      %span.icon-right-bottom
+      %p.sno
+        %a{href: "/"} 熊猫优选
+        %a{href: "/cc/#{@collection.category}/"} 购物指南
+  = render partial: "jd_media/sku_list_2", locals: {skus: @skus}
+  = render partial: "jd_media/collection_list", locals: {cs: @cs}

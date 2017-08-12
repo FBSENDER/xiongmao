@@ -1,0 +1,23 @@
+- title("#{@sku.title}_熊猫优选")
+- head_desc("熊猫优选官网 - 1折券、2折券、5折券、对折券，淘宝天猫优惠券、折扣券免费领。熊猫优选官方下载，网红力荐。熊猫优选app最新版,IOS 安卓官方下载。")
+- keywords("#{@sku.title},#{@sku.title}购买指南,#{@sku.title}折扣,#{@sku.title}优惠")
+- path(@path)
+- h1(@sku.title)
+
+.wrapper
+  .product-list-2
+    .product-item
+      .img-area
+        %img{src: "#{@sku.img_url}"}
+        .mask
+          %p.title #{@sku.title}
+          %p.price-area
+            %span.price ￥#{@sku.price}
+            - if @sku.o_price > 0
+              %span.o-price 原价 ￥#{@sku.o_price}
+            - else
+              %span.o-price 去看看 别错过
+    .desc-area
+      %p #{@sku.description}
+  = render partial: "jd_media/sku_list_1", locals: {skus: @skus}
+  = render partial: "jd_media/collection_list", locals: {cs: @cs}
