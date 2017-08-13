@@ -13,13 +13,14 @@ class JdMediaController < ApplicationController
   def collection
     @collection = JdCollection.where(id: params[:id].to_i).take
     not_found if @collection.nil?
-    @skus = JdProduct.where(sku_id: @collection.sku_ids.split(',')).to_a
+    @skus = JdProduct.where(sku_id: @collection.sku_ids.split(',')).select(:id, :sku_id, :title, :description, :img_url, :ad_url, :price, :o_price).to_a
     if @skus.size % 2 == 1
       @skus << @skus[@skus.size - 1]
     end
     ids = JdCollection.where(category: @collection.category).pluck(:id)
     @cs = JdCollection.where(id: ids.sample(10)).select(:id, :title, :sku_img_urls, :description)
     @path = request.path + "/"
+    @is_robot = is_robot?
     if(@collection.c_type == 1)
       render :collection_1
     else
@@ -49,7 +50,7 @@ class JdMediaController < ApplicationController
   def jdsku
     @sku = JdProduct.where(id: params[:id].to_i).take
     not_found if @sku.nil?
-    @skus = JdProduct.where(id: (1..14000).to_a.sample(20)).select(:id, :title, :img_url, :price, :o_price).to_a
+    @skus = JdProduct.where(id: (1..14000).to_a.sample(20)).select(:id, :sku_id, :title, :img_url, :price, :o_price, :ad_url).to_a
     @path = request.path + "/"
     @cs = JdCollection.where(id: (1..1890).to_a.sample(10)).select(:id, :title, :sku_img_urls, :description)
   end
