@@ -13,6 +13,8 @@
                   %span.o-price 原价 ￥#{sku.o_price}
                 - else
                   %span.o-price 去看看 别错过
+        .product-item
+          %p.desc #{sku.description}
     - else
       %a{href: "/jdsku/#{sku.id}/", target: "_blank"}
         .product-item
@@ -26,4 +28,5 @@
                   %span.o-price 原价 ￥#{sku.o_price}
                 - else
                   %span.o-price 去看看 别错过
-
+        .product-item
+          %p.desc #{sku.description}
