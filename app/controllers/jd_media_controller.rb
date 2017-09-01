@@ -54,4 +54,9 @@ class JdMediaController < ApplicationController
     @path = request.path + "/"
     @cs = JdCollection.where(id: (1..1890).to_a.sample(10)).select(:id, :title, :sku_img_urls, :description)
   end
+
+  def data
+    @cs = JdCollection.where(status: 1, c_type: 1).select(:id, :title, :description, :img_url, :sku_img_urls).order("id desc").take(100)
+    render json: @cs
+  end
 end

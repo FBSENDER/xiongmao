@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get "collection/:id", to: "jd_media#collection"
   get "cc/:id", to: "jd_media#collection_category"
   get "jdsku/:id", to: "jd_media#jdsku"
+  get "data", to: "jd_media#data"
 end
