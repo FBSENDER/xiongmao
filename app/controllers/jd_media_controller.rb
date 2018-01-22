@@ -1,13 +1,13 @@
 require 'jd_media'
 class JdMediaController < ApplicationController
   def collection_home
-    @cs1 = JdCollection.where(category: 1).select(:id, :title, :sku_img_urls, :description).take(5)
-    @cs2= JdCollection.where(category: 2).select(:id, :title, :sku_img_urls, :description).take(5)
-    @cs3 = JdCollection.where(category: 3).select(:id, :title, :sku_img_urls, :description).take(5)
-    @cs4 = JdCollection.where(category: 4).select(:id, :title, :sku_img_urls, :description).take(5)
-    @cs5 = JdCollection.where(category: 5).select(:id, :title, :sku_img_urls, :description).take(5)
-    @cs6 = JdCollection.where(category: 6).select(:id, :title, :sku_img_urls, :description).take(5)
-    @cs7 = JdCollection.where(category: 7).select(:id, :title, :sku_img_urls, :description).take(5)
+    @cs1 = JdCollection.where(category: 1).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs2 = JdCollection.where(category: 2).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs3 = JdCollection.where(category: 3).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs4 = JdCollection.where(category: 4).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs5 = JdCollection.where(category: 5).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs6 = JdCollection.where(category: 6).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs7 = JdCollection.where(category: 7).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
     @path = "/"
   end
   def collection

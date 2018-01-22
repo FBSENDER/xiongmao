@@ -1,0 +1,81 @@
+- title(@title)
+- head_desc(@description)
+- keywords(@keywords)
+- path(@path)
+- h1(@product.title)
+
+.wrapper
+  %nav
+    %a{href: "/"} 熊猫优选
+    - @categories.each do |ct|
+      &nbsp;>&nbsp;
+      %a{href: "/youxuan/#{URI.encode(ct)}/"} #{ct}
+    &nbsp;>&nbsp;
+    %br
+    %b #{@product.title}
+
+%article.wrapper
+  %h2.sno 剁手都要买的好东西 - #{@product.title}
+  %img{src: "#{@product.pic_url}", alt: "#{@product.title}", style: "margin-top: 5px"}
+  - JSON.parse(@product.small_images).each_with_index do |pic, index|
+    %img{src: "#{pic}", alt: "#{@product.title}_商品详情图#{index}"}
+  - if @detail
+    %p #{@detail.short_title} - #{@detail.description}
+    %img{src: "#{@detail.cover_url}", alt: "#{@detail.short_title}"}
+    - JSON.parse(@detail.detail_images).each_with_index do |pic, index|
+      %img{src: "#{pic}", alt: "#{@detail.short_title}_详情图_#{index}"}
+  %p 【我剁手都要买的宝贝（#{@product.title}），快来和我一起瓜分红包】http://www.xiongmao123.com/baobei/#{@product.item_id}/ 点击链接，再选择浏览器打开；或复制这条信息￥www.xiongmao123.com￥后打开手淘
+  %p #{@product.title}，原价#{@product.origin_price}元，领券立减#{@product.origin_price - @product.price}元，月销#{@product.volume}件，淘宝/天猫热销中，优惠券马上领。
+  - if @coupon
+    %p #{@product.title}淘宝天猫店铺#{@coupon.price}元优惠券，优惠券有效期至#{Time.at(@coupon.end_time.to_i).strftime("%Y年%m月%d日")}，在有效期内下单，原价#{@product.price}元,券后价#{@product.price - @coupon.price}元，可立省#{@coupon.price}元。#{@product.title}最近30天已经售出#{@product.volume}件，可以放心购买。
+  %p #{@product.title}优惠券如何领取？首先点击页面上的立即领券按钮，来到淘宝天猫的优惠券领取页，在点击立即领券，这时系统会提示您登陆淘宝账户，登录成功后，就可以领取优惠券，下单享受立减优惠了。
+  %p 已经领取的优惠券如何使用？在淘宝下单页面，勾选指定的优惠方式即可，某些优惠券无法叠加使用。
+  %p 我领取了很多优惠券，在哪里查看我已经领取了哪些呢？登录淘宝，然后依次进入，我的淘宝->我的优惠信息->优惠卡券，在这里就可以看到所有领取的优惠券了，同时能够查看到优惠券的使用条件，有效时间，发行店铺。
+  %p 友情提示：#{@product.title}优惠券每个淘宝账户限领取1张，领取后请在优惠券有效期内使用。
+  - if @shop
+    %p #{@product.title} - 所属店铺：#{@shop.title}，掌柜是#{@shop.nick}，宝贝将从#{@shop.provcity}发货。
+    %div{style: "text-align:center"}
+      %img.shop_cover{src: "#{@shop.pic_url}", alt: "#{@shop.title}"}
+  - if @related_shops && @related_shops.size > 0
+    %h3 推荐店铺：
+    - @related_shops.each do |shop|
+      %div
+        %p #{shop.title} - 掌柜：#{shop.nick}
+        %div{style: "text-align:center"}
+          %img.shop_cover{src: "#{shop.pic_url}", alt: "#{shop.title}"}
+  - if @suggest_keywords && @suggest_keywords.size > 0
+    %h3 相关搜索词：
+    %p
+      - @suggest_keywords.each do |k|
+        %a{href: "/youxuan/#{URI.encode(k)}/"} #{k}
+  - if @same_shop_products && @same_shop_products.size > 0
+    %h3 同店商品推荐：
+    - @same_shop_products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}
+
+  - if @related_products && @related_products.size > 0
+    %h3 相关商品推荐：
+    - @related_products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}
+  
+  - if @new_products && @new_products.size > 0
+    %h3 新品推荐：
+    - @new_products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}
+
+  - if @hot_products && @hot_products.size > 0 
+    %h3 热销商品推荐：
+    - @hot_products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}

@@ -1,0 +1,57 @@
+- title(@title)
+- head_desc(@description)
+- keywords(@keywords)
+- path(@path)
+- h1(@shop.title)
+
+.wrapper
+  %nav
+    %a{href: "/"} 熊猫优选
+    &nbsp;>&nbsp;
+    %a{href: "/shop_map/"} 淘宝店铺大全
+    &nbsp;>&nbsp;
+    %b #{@shop.title}
+
+%article.wrapper
+  %h2.sno #{@shop.title}介绍 - 优惠券 信誉 评价 怎么样
+  %p #{@description}
+  %div{style: "text-align:center"}
+    %img.shop_cover{src: "#{@shop.pic_url}", alt: "#{@shop.title}"}
+
+
+  - if @products && @products.size > 0
+    - @products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}
+
+  - if @shops && @shops.size > 0
+    %h3 相关淘宝天猫店铺：
+    - @shops.each do |shop|
+      %div
+        %p #{shop.title} - 掌柜：#{shop.nick}
+        %div{style: "text-align:center"}
+          %img.shop_cover{src: "#{shop.pic_url}", alt: "#{shop.title}"}
+
+  - if @suggest_keywords && @suggest_keywords.size > 0
+    %h3 相关搜索词：
+    %p
+      - @suggest_keywords.each do |k|
+        %a{href: "/youxuan/#{URI.encode(k)}/"} #{k}
+
+  - if @new_products && @new_products.size > 0
+    %h3 新品推荐：
+    - @new_products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}
+
+  - if @hot_products && @hot_products.size > 0 
+    %h3 热销商品推荐：
+    - @hot_products.each do |product|
+      %div
+        %a{href: "/baobei/#{product.item_id}/", title: "#{product.title}"}
+          %img{src: "#{product.pic_url}", alt: "#{product.title}"}
+          %p #{product.title} - 原价#{product.origin_price}元，折扣价#{product.price}元 - 掌柜#{product.nick}

@@ -17,12 +17,21 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96984648-9"></script>
+    <script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-96984648-9');
+    </script>
   </head>
 
   <body>
     <%= render partial: "layouts/header"%>
     <h1 class="sno"><%= yield(:h1)%></h1>
     <%= yield %>
+    <%= render partial: "layouts/footer"%>
   </body>
 
 </html>

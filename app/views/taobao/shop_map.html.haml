@@ -1,0 +1,19 @@
+- title("淘宝店铺大全")
+- head_desc("淘宝店铺大全 - 熊猫优选淘宝店铺站点地图")
+- keywords("淘宝店铺大全")
+- path("/shop_map/")
+- h1("淘宝店铺大全")
+
+.wrapper
+  %nav
+    %a{href: "/"} 熊猫优选
+    &nbsp;>&nbsp;
+    %b 淘宝店铺大全
+
+%article.wrapper
+  %p
+    - @shops.each do |sp|
+      %a{href: "/dian/#{sp.source_id}/"} #{sp.title}
+  %p
+    -((@page+1)..(@page + 21)).each do |num|
+      %a{href: "/product_map/?page=#{num}"} 第#{num}页

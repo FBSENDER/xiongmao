@@ -1,0 +1,19 @@
+- title("淘宝商品大全")
+- head_desc("淘宝商品大全 - 熊猫优选淘宝商品站点地图")
+- keywords("淘宝商品大全")
+- path("/product_map/")
+- h1("淘宝商品大全")
+
+.wrapper
+  %nav
+    %a{href: "/"} 熊猫优选
+    &nbsp;>&nbsp;
+    %b 淘宝商品大全
+
+%article.wrapper
+  %p
+    - @products.each do |pd|
+      %a{href: "/baobei/#{pd.item_id}/"} #{pd.title}
+  %p
+    -((@page+1)..(@page + 21)).each do |num|
+      %a{href: "/product_map/?page=#{num}"} 第#{num}页
