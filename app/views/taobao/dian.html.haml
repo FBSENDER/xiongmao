@@ -32,7 +32,8 @@
       %div
         %p #{shop.title} - 掌柜：#{shop.nick}
         %div{style: "text-align:center"}
-          %img.shop_cover{src: "#{shop.pic_url}", alt: "#{shop.title}"}
+          %a{href: "/dian/#{shop.source_id}/", title: "#{shop.title}"}
+            %img.shop_cover{src: "#{shop.pic_url}", alt: "#{shop.title}"}
 
   - if @suggest_keywords && @suggest_keywords.size > 0
     %h3 相关搜索词：
