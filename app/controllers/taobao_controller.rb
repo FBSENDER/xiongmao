@@ -7,9 +7,9 @@ class TaobaoController < ApplicationController
     @title = @detail.nil? ? "#{@product.title}_我剁手都要买的宝贝" : "#{@detail.short_title}_剁手都要买的宝贝"
     @categories = []
     @categories += @product.cate_name.split('/')
-    @categories << @product.cate_leaf_name unless @product.cate_leaf_name.empty?
+    @categories += @product.cate_leaf_name.split('/') unless @product.cate_leaf_name.empty?
     @keywords = "#{@product.title},#{@product.nick},#{@categories.join(',')}"
-    @description = "【剁手都要买的宝贝(#{@product.title}})】#{@product.title} - 分类#{@product.cate_name}/#{@product.cate_leaf_name}，原价#{@product.origin_price}元，现价#{@product.price}元，天猫淘宝#{@product.nick}热卖中，本月销量#{@product.volume}，优惠券领取，降价折扣查询，宝贝精选 - 熊猫优选"
+    @description = "【剁手都要买的宝贝(#{@product.title})】#{@product.title} - 分类#{@product.cate_name}/#{@product.cate_leaf_name}，原价#{@product.origin_price}元，现价#{@product.price}元，天猫淘宝#{@product.nick}热卖中，本月销量#{@product.volume}，优惠券领取，降价折扣查询，宝贝精选 - 熊猫优选"
     @path = request.path + "/"
     @shop = Shop.where(source_id: @product.seller_id).take
     @suggest_keywords = get_suggest_keywords_new(@categories[-1])
