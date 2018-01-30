@@ -6,7 +6,7 @@ class JdMediaController < ApplicationController
     @cs3 = JdCollection.where(category: 3).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
     @cs4 = JdCollection.where(category: 4).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
     @cs5 = JdCollection.where(category: 5).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
-    @cs6 = JdCollection.where(category: 6).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
+    @cs6 = JdCollection.where(category: 6).select(:id, :title, :sku_img_urls, :description).order("id").take(4)
     @cs7 = JdCollection.where(category: 7).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
     @path = "/"
   end
