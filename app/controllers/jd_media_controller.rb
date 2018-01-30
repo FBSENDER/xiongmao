@@ -9,6 +9,7 @@ class JdMediaController < ApplicationController
     @cs6 = JdCollection.where(category: 6).select(:id, :title, :sku_img_urls, :description).order("id").take(4)
     @cs7 = JdCollection.where(category: 7).select(:id, :title, :sku_img_urls, :description).order("id desc").take(5)
     @path = "/"
+    @links = Link.where(status: 1).select(:anchor, :url)
   end
   def collection
     @collection = JdCollection.where(id: params[:id].to_i).take

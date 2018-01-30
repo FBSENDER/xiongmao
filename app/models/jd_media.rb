@@ -5,3 +5,7 @@ end
 class JdCollection < ApplicationRecord
   self.table_name = "zhinan_collections"
 end
+
+class Link < ApplicationRecord
+  self.table_name = 'xiongmao_links'
+end
