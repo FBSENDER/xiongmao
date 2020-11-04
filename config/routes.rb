@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   get "data", to: "jd_media#data"
 
   # taobao
-  get "baobei/:id", to: "taobao#baobei"
-  get "youxuan/:keyword", to: "taobao#youxuan"
-  get "dian/:id", to: "taobao#dian"
-  get "product_map", to: "taobao#product_map"
-  get "shop_map", to: "taobao#shop_map"
+  #get "baobei/:id", to: "taobao#baobei"
+  #get "youxuan/:keyword", to: "taobao#youxuan"
+  #get "dian/:id", to: "taobao#dian"
+  #get "product_map", to: "taobao#product_map"
+  #get "shop_map", to: "taobao#shop_map"
 end

@@ -1,20 +1,14 @@
 .product-list
-  - skus.each_with_index do |sku, index| 
-    .product-box{style: "float: #{index % 2 == 0 ? 'right' : ''}"}
-      - if !@is_robot && sku.ad_url && !sku.ad_url.empty?
-        %a{href: "#{sku.ad_url}", target: "_blank"}
-          %img{src: "#{sku.img_url}"}
-          %p.title #{sku.title}
-          %p.price 
-            ￥#{sku.price}
-            - if sku.o_price > 0
-              %span.o-price 原价￥#{sku.o_price}
-      - else
-        %a{href: "/jdsku/#{sku.id}/", target: "_blank"}
-          %img{src: "#{sku.img_url}"}
-          %p.title #{sku.title}
-          %p.price 
-            ￥#{sku.price}
-            - if sku.o_price > 0
-              %span.o-price 原价￥#{sku.o_price}
+  - (0..((skus.size * 1.0 / 2.0).ceil - 1)).each do |row|
+    .product-row
+      - (0..1).each do |col| 
+        - sku = skus[row * 2 + col]
+        .product-box
+          %a{href: "/jdsku/#{sku.id}/", target: "_blank"}
+            %img{src: "#{sku.img_url}"}
+            %p.title #{sku.title}
+            %p.price 
+              ￥#{sku.price}
+              - if sku.o_price > 0
+                %span.o-price 原价￥#{sku.o_price}
 
