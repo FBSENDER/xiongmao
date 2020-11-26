@@ -155,7 +155,6 @@ body,html {
   }
 }
 .product-box{
-  width: 49%;
   margin: 4px 2px 0 2px;
   background-color: #fff;
   img{
@@ -205,9 +204,12 @@ body,html {
     .img-area{
       padding: 20px 0 20px 0;
       display: flex;
-      img{
-        width: 32%;
-        margin: 0 3px 0 3px;
+      .img-area-in{
+        padding: 5px;
+        img{
+          width: 100%;
+          margin: 0 3px 0 3px;
+        }
       }
     }
   }
@@ -284,5 +286,23 @@ footer{
   p.center{
     padding: 5px;
     text-align: center;
+  }
+}
+.comment{
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  .avatar-area{
+    width: 80px;
+    img{
+      width: 50px;
+      height: 50px;
+      padding: 15px;
+      border-radius: 40px;
+    }
+  }
+  .desc{
+    padding: 0 10px 0 10px;
+    font-size: 14px;
+    color: #646464;
   }
 }
