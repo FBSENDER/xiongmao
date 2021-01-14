@@ -1,0 +1,34 @@
+- title("_熊猫装饰画网")
+- head_desc("熊猫装饰画网，为您推荐2021装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
+- keywords("")
+- path(@path)
+
+.wrapper
+  %section.attr-area
+    = render partial: "attr_row", locals: {id: @a.id, attr: "场景", url: "/zxgt/id-0-0-0-0-0-0-0-0-0/", items: @all.select{|a| a.type_id == 1}}
+    = render partial: "attr_row", locals: {id: @a.id, attr: "风格", url: "/zxgt/0-id-0-0-0-0-0-0-0-0/", items: @all.select{|a| a.type_id == 2}}
+    = render partial: "attr_row", locals: {id: @a.id, attr: "内容", url: "/zxgt/0-0-id-0-0-0-0-0-0-0/", items: @all.select{|a| a.type_id == 3}}
+    = render partial: "attr_row", locals: {id: @a.id, attr: "形状", url: "/zxgt/0-0-0-id-0-0-0-0-0-0/", items: @all.select{|a| a.type_id == 4}}
+    = render partial: "attr_row", locals: {id: @a.id, attr: "材质", url: "/zxgt/0-0-0-0-id-0-0-0-0-0/", items: @all.select{|a| a.type_id == 5}}
+    = render partial: "attr_row", locals: {id: @a.id, attr: "商家", url: "/zxgt/0-0-0-0-0-id-0-0-0-0/", items: @all.select{|a| a.type_id == 6}}
+
+  %section.xgt-x3-area
+    - @items.each do |item|
+      %img.pic{src: "#{item["pict_url"]}", alt: "#{item["title"]}图片"}
+  %section.page-area
+    - (1..10).each do |num|
+      %a.page-num{href: "?page=#{num}", class: "#{num == @page ? "red" : ""}"} #{num}
+  %section.c-list
+    %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 装饰画商家及商品推荐
+    %hr
+    - @ss.each do |s|
+      .comment
+        .avatar-area
+          %a{href: "/zs/#{s.id}/"}
+            %img{src: "#{s.shopLogo}"}
+        %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
+          %a{href: "/zs/#{s.id}/"}
+            #{s.shopName}
+  = render partial: "item_list", locals: {skus: @r}
+
+= render partial: "layouts/footer"

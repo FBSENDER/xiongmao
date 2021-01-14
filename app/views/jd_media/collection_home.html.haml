@@ -5,6 +5,30 @@
 - h1("装饰画")
 
 = @content.html_safe
+%section.product-list.wrapper
+  %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;background-color: #fff;"} 现代室内装饰画图片
+  %hr
+  - (0..9).each do |row|
+    .product-row
+      - (0..1).each do |col|
+        .product-box
+          %img{src: "#{@items[row * 2 + col].mainPic}", alt: "#{@items[row * 2 + col].dtitle}"}
+          %p.title
+            %a{href: "/zp/#{@items[row * 2 + col].id}/"} #{@items[row * 2 + col].dtitle}
+
+
+
 .wrapper
   = render partial: "jd_media/collection_list", locals: {cs: @cs1}
+  %section.c-list
+    %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 商家推荐
+    %hr
+    - @shops.each do |s|
+      .comment
+        .avatar-area
+          %a{href: "/zs/#{s.id}/"}
+            %img{src: "#{s.shopLogo}"}
+        %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
+          %a{href: "/zs/#{s.id}/"} #{s.shopName}
+
 = render partial: "layouts/home_footer"

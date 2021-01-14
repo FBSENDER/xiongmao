@@ -1,0 +1,38 @@
+- title("#{@item.dtitle}_熊猫装饰画网")
+- head_desc("#{@item.desc}。熊猫装饰画网，为您推荐2021装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
+- keywords("#{@item.dtitle},#{@item.dtitle}购买指南,#{@item.dtitle}折扣,#{@item.dtitle}优惠")
+- path(@path)
+
+.wrapper
+  %article.product-list-2
+    .product-item
+      .img-area
+        %img{src: "#{@item.mainPic}"}
+        .mask
+          %h1.title #{@item.dtitle}
+          %p.price-area
+            %span.price ￥#{@item.actualPrice}
+            %span.o-price 原价 ￥#{@item.originalPrice}
+    .desc-area
+      %p #{@item.desc}
+      - if @shop
+        .comment
+          .avatar-area
+            %a{href: "/zs/#{@shop.id}/"}
+              %img{src: "#{@shop.shopLogo}"}
+          %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
+            %a{href: "/zs/#{@shop.id}/"}
+              #{@shop.shopName}
+  %section.c-list
+    %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 用户评价
+    %hr
+    - if @comments.size.zero?
+      %p 暂时还没有评价呦~
+    - @comments.each do |c|
+      .comment
+        .avatar-area
+          %img{src: "#{c["headPicUrl"]}"}
+        %p.desc
+          #{c["commentContent"]} - #{c["commentDate"]}
+  = render partial: "item_list", locals: {skus: @r}
+= render partial: "layouts/footer"

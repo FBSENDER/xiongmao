@@ -1,0 +1,5 @@
+.attr-row
+  .attr-header #{attr}
+  .attr-items
+    - items.each do |item|
+      %a.attr-item{href: "#{url.sub("id", item.id.to_s)}", class: "#{item.id == id ? "red" : ""}"} #{item.name}

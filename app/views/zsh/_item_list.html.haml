@@ -1,0 +1,13 @@
+.product-list
+  - (0..((skus.size * 1.0 / 2.0).ceil - 1)).each do |row|
+    .product-row
+      - (0..1).each do |col| 
+        - sku = skus[row * 2 + col]
+        - if sku
+          .product-box
+            %a{href: "/zp/#{sku.id}/", title: "#{sku.dtitle}"}
+              %img{src: "#{sku.mainPic}"}
+              %p.title #{sku.dtitle}
+              %p.price 
+                ￥#{sku.actualPrice}
+                %span.o-price 原价￥#{sku.originalPrice}
