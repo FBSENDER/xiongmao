@@ -3,9 +3,8 @@ require 'zsh'
 class JdMediaController < ApplicationController
 
   def collection_home
-    @cs1 = JdCollection.where(id: [1762,3273,6721,7796]).select(:id, :title, :sku_img_urls, :description)
-    @items = ZshProduct.select(:id, :dtitle, :mainPic).order(:id).limit(20)
-    @shops = ZshShop.select(:id, :shopName, :shopLogo).order(:id).limit(5)
+    @items = ZshProduct.where("dtitle like ?", "%黑白%").select(:id, :dtitle, :mainPic, :desc).order("id desc").limit(60)
+    @shops = ZshShop.select(:id, :shopName, :shopLogo).order(:id).limit(10)
     @path = ""
     @links = Link.where(status: 1).select(:anchor, :url)
     file = Rails.root.join("public").join("home.html")

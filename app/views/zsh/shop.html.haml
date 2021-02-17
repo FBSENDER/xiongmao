@@ -3,7 +3,7 @@
 - keywords("#{@shop.shopName},#{@shop.shopName}首页,#{@shop.shopName}怎么样")
 - path(@path)
 
-.wrapper
+.wrapper{style: "margin-bottom: 10px;"}
   .comment
     .avatar-area
       %img{src: "#{@shop.shopLogo}"}
@@ -22,3 +22,5 @@
         %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
           %a{href: "/zs/#{s.id}/"}
             #{s.shopName}
+
+= render partial: "layouts/footer"

@@ -14,7 +14,7 @@
             %span.price ￥#{@item.actualPrice}
             %span.o-price 原价 ￥#{@item.originalPrice}
     .desc-area
-      %p #{@item.desc}
+      %p #{@item.desc.empty? ? @item.dtitle : @item.desc}
       - if @shop
         .comment
           .avatar-area
