@@ -12,7 +12,8 @@
     .product-row
       - (0..1).each do |col|
         .product-box
-          %img{src: "#{@items[row * 2 + col].mainPic}", alt: "#{@items[row * 2 + col].desc + @items[row * 2 + col].dtitle}"}
+          %a{href: "/zp/#{@items[row * 2 + col].id}/"}
+            %img{src: "#{@items[row * 2 + col].mainPic}", alt: "#{@items[row * 2 + col].desc + @items[row * 2 + col].dtitle}"}
           %p.title
             %a{href: "/zp/#{@items[row * 2 + col].id}/"} #{@items[row * 2 + col].dtitle}
 

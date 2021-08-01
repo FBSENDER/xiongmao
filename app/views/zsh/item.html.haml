@@ -5,7 +5,7 @@
 
 .wrapper
   %article.product-list-2
-    .product-item
+    .product-item{onclick: "item_detail_click('#{@item.goodsId}');"}
       .img-area
         %img{src: "#{@item.mainPic}"}
         .mask
@@ -36,3 +36,4 @@
           #{c["commentContent"]} - #{c["commentDate"]}
   = render partial: "item_list", locals: {skus: @r}
 = render partial: "layouts/footer"
+= render partial: "js_part"

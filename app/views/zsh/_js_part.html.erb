@@ -1,0 +1,10 @@
+<script>
+  var item_detail_click = function(id){
+    _hmt.push(['_trackEvent', 'zsh_item', 'click', 'tb']);
+    window.location.href = "https://api.uuhaodian.com/uu/pcbuy?channel=25&id=" + id;
+  }
+  var shop_go_click = function(id){
+    _hmt.push(['_trackEvent', 'zsh_item', 'click', 'shop']);
+    window.location.href = "https://api.uuhaodian.com/uu/shop_go?sgo=zsh&shop_id=" + id;
+  }
+</script>
