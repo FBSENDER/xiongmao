@@ -3,6 +3,11 @@
 - keywords("#{@shop.shopName},#{@shop.shopName}首页,#{@shop.shopName}怎么样")
 - path(@path)
 
+%nav{style: "color: #777;"}
+  %a{href: "/", title: "熊猫装饰画网"} 首页
+  >
+  %a{href: "/zxgt/"} 选购装饰画
+  > #{@shop.shopName}
 .wrapper{style: "margin-bottom: 10px;"}
   .comment{onclick: "shop_go_click('#{@shop.sellerId}');"}
     .avatar-area

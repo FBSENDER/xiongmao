@@ -5,9 +5,9 @@
         - sku = skus[row * 2 + col]
         - if sku
           .product-box
-            %a{href: "/zp/#{sku.id}/", title: "#{sku.dtitle}"}
-              %img{src: "#{sku.mainPic}"}
-              %p.title #{sku.dtitle}
+            %a{href: "/zp/#{sku.id}/", title: "#{sku.dtitle.empty? ? sku.title : sku.dtitle}"}
+              %img{src: "#{sku.mainPic}", alt: "#{sku.dtitle.empty? ? sku.title : sku.dtitle}"}
+              %p.title #{sku.dtitle.empty? ? sku.title : sku.dtitle}
               %p.price 
                 ￥#{sku.actualPrice}
                 %span.o-price 原价￥#{sku.originalPrice}

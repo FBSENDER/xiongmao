@@ -6,7 +6,10 @@
 
 = @content.html_safe
 %section.product-list.wrapper
-  %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;background-color: #fff;"} 黑白装饰画大全
+  %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;background-color: #fff;"}
+    黑白装饰画大全
+    %span{style: "float:right;"}
+      %a{href: "/zxgt/", title: "选购装饰画"} 去选购
   %hr
   - (0..29).each do |row|
     .product-row

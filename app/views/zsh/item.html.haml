@@ -3,6 +3,11 @@
 - keywords("#{@item.dtitle},#{@item.dtitle}购买指南,#{@item.dtitle}折扣,#{@item.dtitle}优惠")
 - path(@path)
 
+%nav{style: "color: #777;"}
+  %a{href: "/", title: "熊猫装饰画网"} 首页
+  >
+  %a{href: "/zxgt/"} 选购装饰画
+  > #{@item.dtitle}
 .wrapper
   %article.product-list-2
     .product-item{onclick: "item_detail_click('#{@item.goodsId}');"}
@@ -15,6 +20,10 @@
             %span.o-price 原价 ￥#{@item.originalPrice}
     .desc-area
       %p #{@item.desc.empty? ? @item.dtitle : @item.desc}
+      %p
+        - if @tags.size > 0
+          - @tags.each do |tag|
+            %a.zsh-tag{href: "#{tag[:link]}", style: "color: red;", title: "#{tag[:name]}装饰画"} #{tag[:name]}
       - if @shop
         .comment
           .avatar-area
