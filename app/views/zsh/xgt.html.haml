@@ -18,7 +18,8 @@
 
   %section.xgt-x3-area
     - @items.each do |item|
-      %img.pic{src: "#{item["pict_url"]}", alt: "#{item["title"]}图片", onclick: "item_detail_click('#{item["item_id"]}');"}
+      .pic
+        %img{src: "#{item["pict_url"]}", alt: "#{item["title"]}图片", onclick: "item_detail_click('#{item["item_id"]}');"}
   %section.page-area
     - (1..10).each do |num|
       %a.page-num{href: "?page=#{num}", class: "#{num == @page ? "red" : ""}", rel: "nofollow"} #{num}
