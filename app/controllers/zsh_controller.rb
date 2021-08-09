@@ -65,7 +65,7 @@ class ZshController < ApplicationController
     not_found if @a.nil?
     @items = get_dg_items("#{@a.name}装饰画", @page)
     @title = @a.alias.empty? ? "#{@a.name}装饰画" : @a.alias.split(',').map{|x| "#{x}装饰画"}.join(',')
-    @r = ZshProduct.where(id: (1..93).to_a.sample(10)).select(:id, :title, :dtitle, :mainPic, :actualPrice, :originalPrice).to_a
+    @r = ZshProduct.where("title like ?", "%#{@a.name}%").select(:id, :title, :dtitle, :mainPic, :actualPrice, :originalPrice).limit(10).offset(10 * page).to_a
     @ss = ZshShop.where(id: (1..43).to_a.sample(5)).select(:id, :shopName, :shopLogo)
     @path = request.path + "/"
     render "xgt"
