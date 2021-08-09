@@ -48,7 +48,7 @@ class ZshController < ApplicationController
     @items = get_dg_items("装饰画", @page)
     @a = ZshAttr.new
     @title = "装饰画怎么选择,选购装饰画"
-    @r = ZshProduct.where(id: (1..93).to_a.sample(10)).select(:id, :dtitle, :mainPic, :actualPrice, :originalPrice).to_a
+    @r = ZshProduct.where(id: (1..93).to_a.sample(10)).select(:id, :title, :dtitle, :mainPic, :actualPrice, :originalPrice).to_a
     @ss = ZshShop.where(id: (1..43).to_a.sample(5)).select(:id, :shopName, :shopLogo)
     @path = "/zxgt/"
     render "xgt"
