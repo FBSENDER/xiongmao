@@ -8,7 +8,8 @@
   >
   %a{href: "/zxgt/"} 选购装饰画
   - unless @a.name.empty?
-    > #{@a.name}
+    > 
+    %h1{style: "display:inline;"} #{@a.name}
 .wrapper
   %section.attr-area
     = render partial: "attr_row", locals: {id: @a.id, attr: "场景", url: "/zxgt/id-0-0-0-0-0-0-0-0-0/", items: @all.select{|a| a.type_id == 1}}
