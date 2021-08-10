@@ -7,6 +7,8 @@
   %a{href: "/", title: "熊猫装饰画网"} 首页
   >
   %a{href: "/zxgt/"} 选购装饰画
+  - unless @a.name.empty?
+    > #{@a.name}
 .wrapper
   %section.attr-area
     = render partial: "attr_row", locals: {id: @a.id, attr: "场景", url: "/zxgt/id-0-0-0-0-0-0-0-0-0/", items: @all.select{|a| a.type_id == 1}}
@@ -34,7 +36,7 @@
         %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
           %a{href: "/zs/#{s.id}/"}
             #{s.shopName}
-  = render partial: "item_list", locals: {skus: @r}
+  = render partial: "item_list_keyword", locals: {skus: @r, keyword: @a.name}
 
 = render partial: "layouts/footer"
 = render partial: "js_part"
