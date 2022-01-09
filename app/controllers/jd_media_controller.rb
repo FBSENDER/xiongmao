@@ -7,6 +7,18 @@ class JdMediaController < ApplicationController
     @shops = ZshShop.select(:id, :shopName, :shopLogo).order(:id).limit(10)
     @path = ""
     @links = Link.where(status: 1).select(:anchor, :url)
+    @tags = []
+    za = ZshAttr.select(:id, :name, :sort, :type_id, :alias).to_a
+    za.each do |attr|
+      link = attr.type_id == 1 ? "/zxgt/#{attr.id}-0-0-0-0-0-0-0-0-0/" :
+             attr.type_id == 2 ? "/zxgt/0-#{attr.id}-0-0-0-0-0-0-0-0/" :
+             attr.type_id == 3 ? "/zxgt/0-0-#{attr.id}-0-0-0-0-0-0-0/" :
+             attr.type_id == 4 ? "/zxgt/0-0-0-#{attr.id}-0-0-0-0-0-0/" :
+             attr.type_id == 5 ? "/zxgt/0-0-0-0-#{attr.id}-0-0-0-0-0/" :
+                                 "/zxgt/0-0-0-0-0-#{attr.id}-0-0-0-0/" 
+      @tags << {name: attr.name, link: link}
+    end
+    @tags = @tags.sample(30)
     file = Rails.root.join("public").join("home.html")
     if !File.exists?(file)
       @content = ""

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #zsh
   get "zp/:id", to: "zsh#item"
   get "zs/:id", to: "zsh#shop"
+  get "map-product-:letter-:page.html", to: "zsh#product_map"
+  get "map-shop-:letter-:page.html", to: "zsh#shop_map"
   get "zxgt", to: "zsh#xgt_home"
   get "zxgt/:id-0-0-0-0-0-0-0-0-0", to: "zsh#xgt_only_1", id: /\d+/
   get "zxgt/0-:id-0-0-0-0-0-0-0-0", to: "zsh#xgt_only_1", id: /\d+/
@@ -19,6 +21,16 @@ Rails.application.routes.draw do
   #get "zxgt/0-0-0-0-0-0-0-0-0-0", to: "zsh#xgt"
   #get "zpic/0-0-0-0-0-0-0-0-0-0", to: "zsh#pic"
   #get "zbuy/0-0-0-0-0-0-0-0-0-0", to: "zsh#buy"
+  #热销榜
+  get "hot", to: "zsh#hot"
+  #最新优惠
+  get "new_coupons", to: "zsh#new_coupons"
+  #好评榜
+  get "hot_comments", to: "zsh#hot_comments"
+  #新品
+  get "new_items", to: "zsh#new_items"
+  #recommend
+  get "recommend", to: "zsh#recommend"
 
   # taobao
   #get "baobei/:id", to: "taobao#baobei"

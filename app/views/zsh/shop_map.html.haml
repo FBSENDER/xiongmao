@@ -1,0 +1,35 @@
+- title("装饰画店铺列表_分类#{@letter}_第#{@page}页_熊猫装饰画网")
+- head_desc("熊猫装饰画网，为您推荐2022装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
+- keywords("熊猫装饰画网,装饰画,黑白装饰画")
+- path(@path)
+
+%nav{style: "color: #777;"}
+  %a{href: "/", title: "熊猫装饰画网"} 首页
+  >
+  %a{href: "/map-product-1-1.html"} 站点地图
+.wrapper
+  %section.attr-area
+    .attr-row
+      .attr-items
+        %a.attr-item{href: "/map-product-1-1.html", class: ""} 装饰画
+        %a.attr-item{href: "#", class: "red"} 店铺
+    .attr-row
+      .attr-items
+        - (0..9).each do |num|
+          %a.attr-item{href: "/map-shop-#{num}-1.html", class: "#{num.to_s == @letter ? 'red' : ''}"} #{num}
+
+.wrapper
+  %section.attr-area
+    - @r.each do |r|
+      .attr-row
+        %a{href: "/zs/#{r.id}/"} #{r.shopName}
+
+.wrapper
+  %section.attr-area
+    .attr-row
+      .attr-items
+        - (1..@cnt).each do |num|
+          %a.attr-item{href: "/map-shop-#{@letter}-#{num}.html", class: "#{num == @page ? 'red' : ''}"} 第#{num}页
+
+= render partial: "layouts/footer"
+= render partial: "js_part"

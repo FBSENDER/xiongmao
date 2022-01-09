@@ -1,0 +1,27 @@
+- title("装饰画销量榜_热销装饰画_熊猫装饰画网")
+- head_desc("装饰画销量榜，来看看近期热销的装饰画吧。熊猫装饰画网，为您推荐2022装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
+- keywords("装饰画,装饰画销量榜,热销装饰画")
+- path(@path)
+
+%nav{style: "color: #777;"}
+  %a{href: "/", title: "熊猫装饰画网"} 首页
+  >
+  %a{href: "/hot/"} 装饰画销量榜 
+
+.wrapper
+  %article.product-list-2
+    %h1{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 装饰画销量榜
+    %p{style: "font-size: 14px;color:#646464;padding: 10px;margin:0 10px;"} 装饰画销量榜，来看看近期热销的装饰画吧。熊猫装饰画网，为您推荐2022装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！
+    - @r.each_with_index do |r, index|
+      .product-item
+        %a{href: "/zp/#{r.id}/", title: "#{r.title}"}
+          .img-area
+            %img{src: "#{r.mainPic}"}
+            .mask
+              %h1.title #{r.dtitle.empty? ? r.title : r.dtitle}
+              %p.price-area
+                %span.price TOP #{index + 1}
+                %span.o-price 月销量#{r.monthSales}
+
+= render partial: "layouts/footer"
+= render partial: "js_part"

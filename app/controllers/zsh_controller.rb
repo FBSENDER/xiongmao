@@ -81,4 +81,46 @@ class ZshController < ApplicationController
       return []
     end
   end
+
+  def product_map
+    @letter = params[:letter]
+    @page = params[:page].to_i
+    @page = 1 if @page < 1
+    @r = ZshProduct.where(letter: @letter).select(:id, :title).offset(200 * (@page - 1)).limit(200) 
+    @cnt = (ZshProduct.where(letter: @letter).count * 1.0 / 200).ceil
+    @path = request.path
+  end
+
+  def shop_map
+    @letter = params[:letter]
+    @page = params[:page].to_i
+    @page = 1 if @page < 1
+    @r = ZshShop.where(letter: @letter).select(:id, :shopName).offset(200 * (@page - 1)).limit(200) 
+    @cnt = (ZshShop.where(letter: @letter).count * 1.0 / 200).ceil
+    @path = request.path
+  end
+
+  def hot
+    t = Time.at(Time.now.to_i - 3600 * 24 * 30)
+    @r = ZshProduct.where("created_at > ? and monthSales > 0", t).select(:id, :goodsId, :title, :dtitle, :mainPic, :monthSales).order("monthSales desc").limit(50)
+    @path = request.path + "/"
+  end
+
+  def new_coupons
+    @r = ZshProduct.where("couponPrice > 0").select(:id, :title, :dtitle, :mainPic, :couponPrice, :couponConditions, :couponEndTime).order("couponEndTime desc").limit(50)
+    @path = request.path + "/"
+  end
+
+  def hot_comments
+    @comments = ZshProductComment.where("comments <> '[]'").select(:id, :product_id, :comments).order("id desc").limit(10).map{|z| {id: z.product_id, c: JSON.parse(z.comments)}}
+  end
+
+  def recommend
+    @r = ZshProduct.where("`desc` <> ?", '').select(:id, :goodsId, :title, :dtitle, :mainPic, :desc).order("id desc").limit(50)
+  end
+
+  def new_items
+    @r = ZshProduct.select(:id, :goodsId, :title, :dtitle, :mainPic, :originalPrice, :actualPrice).order("id desc").limit(50)
+  end
+
 end

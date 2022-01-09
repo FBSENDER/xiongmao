@@ -1,17 +1,19 @@
-- title("黑白装饰画,2021黑白装饰画购买与图片赏析-熊猫装饰画网")
-- head_desc("熊猫装饰画网，为您推荐2021黑白装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
-- keywords("黑白装饰画,熊猫装饰画网,装饰画,熊猫装饰画,装饰画图片大全,线描装饰画,墙上装饰画,2021装饰画,装饰画图片,色彩装饰画,现代装饰画,创意装饰画,客厅装饰画")
+- title("黑白装饰画,2022黑白装饰画购买与图片赏析-熊猫装饰画网")
+- head_desc("熊猫装饰画网，为您推荐2022黑白装饰画大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
+- keywords("黑白装饰画,熊猫装饰画网,装饰画,熊猫装饰画,装饰画图片大全,线描装饰画,墙上装饰画,2022装饰画,装饰画图片,色彩装饰画,现代装饰画,创意装饰画,客厅装饰画")
 - path(@path)
 - h1("黑白装饰画")
 
 = @content.html_safe
+
 %section.product-list.wrapper
   %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;background-color: #fff;"}
     黑白装饰画大全
     %span{style: "float:right;"}
       %a{href: "/zxgt/", title: "选购装饰画"} 去选购
   %hr
-  - (0..29).each do |row|
+
+  - (15..29).each do |row|
     .product-row
       - (0..1).each do |col|
         .product-box
@@ -20,9 +22,27 @@
           %p.title
             %a{href: "/zp/#{@items[row * 2 + col].id}/"} #{@items[row * 2 + col].dtitle}
 
+.wrapper
+  - @tags[0,10].each_with_index do |tag, index|
+    %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 
+      %a{href: "#{tag[:link]}"} #{tag[:name]}装饰画
+    %hr
+    %section.xgt-x3-area
+      - @items[index * 3, 3].each do |item|
+        .pic
+          %a{href: "/zp/#{item.id}/"}
+            %img{src: "#{item.mainPic}", alt: "#{item.dtitle}图片"}
+
 
 
 .wrapper
+  %section.c-list
+    %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 
+      %a{href: "/zxgt/"}更多装饰画分类
+    %hr
+    %div
+      - @tags[10,20].each do |tag|
+        %a{href: "#{tag[:link]}", title: "#{tag[:name]}装饰画", style: "color: #555;"} #{tag[:name]}
   %section.c-list
     %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 装饰画商家推荐
     %hr
