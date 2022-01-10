@@ -1,0 +1,37 @@
+%section.attr-area
+  .attr-row
+    .attr-header 场景
+    .attr-items
+      %a.attr-item{href: "/zxgt/0-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{@id1 == 0 ? "red" : ""}"} 不限
+      - @all.select{|a| a.type_id == 1}.each do |item|
+        %a.attr-item{href: "/zxgt/#{item.id}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{item.id == @id1 ? "red" : ""}"} #{item.name}
+  .attr-row
+    .attr-header 风格
+    .attr-items
+      %a.attr-item{href: "/zxgt/#{@id1}-0-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{@id2 == 0 ? "red" : ""}"} 不限
+      - @all.select{|a| a.type_id == 2}.each do |item|
+        %a.attr-item{href: "/zxgt/#{@id1}-#{item.id}-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{item.id == @id2 ? "red" : ""}"} #{item.name}
+  .attr-row
+    .attr-header 内容
+    .attr-items
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-0-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{@id3 == 0 ? "red" : ""}"} 不限
+      - @all.select{|a| a.type_id == 3}.each do |item|
+        %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{item.id}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{item.id == @id3 ? "red" : ""}"} #{item.name}
+  .attr-row
+    .attr-header 形状
+    .attr-items
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-0-#{@id5}-#{@id6}-0-0-0-0/", class: "#{@id4 == 0 ? "red" : ""}"} 不限
+      - @all.select{|a| a.type_id == 4}.each do |item|
+        %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{item.id}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{item.id == @id4 ? "red" : ""}"} #{item.name}
+  .attr-row
+    .attr-header 材质
+    .attr-items
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-0-#{@id6}-0-0-0-0/", class: "#{@id5 == 0 ? "red" : ""}"} 不限
+      - @all.select{|a| a.type_id == 5}.each do |item|
+        %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{item.id}-#{@id6}-0-0-0-0/", class: "#{item.id == @id5 ? "red" : ""}"} #{item.name}
+  .attr-row
+    .attr-header 商家
+    .attr-items
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-0-0-0-0-0/", class: "#{@id6 == 0 ? "red" : ""}"} 不限
+      - @all.select{|a| a.type_id == 6}.each do |item|
+        %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{item.id}-0-0-0-0/", class: "#{item.id == @id6 ? "red" : ""}"} #{item.name}

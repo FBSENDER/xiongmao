@@ -1,0 +1,36 @@
+- title("#{@title}_熊猫装饰画网")
+- head_desc("熊猫装饰画网，为您推荐#{@title.gsub(",", "，")}大全，各种场景与风格，尽量满足您的美感与使用需求，提供装饰画的购买渠道、报价以及图片赏析等服务。装饰画包含黑白、色彩、线描、人物风景、家居家庭、客厅卧室、电表箱、玄关、墙上、手绘壁画印刷装饰画等，请您随意挑选！")
+- keywords("#{@title},装饰画,黑白装饰画,熊猫装饰画网")
+- path(@path)
+
+%nav{style: "color: #777;"}
+  %a{href: "/", title: "熊猫装饰画网"} 首页
+  >
+  %a{href: "/zxgt/"} 选购装饰画
+  > 
+  %h1{style: "display:inline;"} #{@title}
+.wrapper
+  = render partial: "attr_area"
+
+  %section.xgt-x3-area
+    - @items.each do |item|
+      .pic
+        %img{src: "#{item["pict_url"]}", alt: "#{item["title"]}图片", onclick: "item_detail_click('#{item["item_id"]}');"}
+  %section.page-area
+    - (1..10).each do |num|
+      %a.page-num{href: "?page=#{num}", class: "#{num == @page ? "red" : ""}", rel: "nofollow"} #{num}
+  %section.c-list
+    %h2{style: "font-size:18px;color:#555;padding: 20px 20px 10px 20px;"} 装饰画商家及商品推荐
+    %hr
+    - @ss.each do |s|
+      .comment
+        .avatar-area
+          %a{href: "/zs/#{s.id}/"}
+            %img{src: "#{s.shopLogo}"}
+        %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
+          %a{href: "/zs/#{s.id}/"}
+            #{s.shopName}
+  = render partial: "item_list_keyword", locals: {skus: @r, keyword: @ks[0]}
+
+= render partial: "layouts/footer"
+= render partial: "js_part"
