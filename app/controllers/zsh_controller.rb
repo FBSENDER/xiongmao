@@ -89,6 +89,8 @@ class ZshController < ApplicationController
     @page = page <= 0 ? 1 : page
     page = page - 1 if page > 0
     not_found if @page > 10
+    @is_new = request.path.include?('new') ? 1 : 0 
+    @is_hot = request.path.include?('hot') ? 1 : 0 
     @ks = []
     @all = ZshAttr.select(:id, :name, :sort, :type_id, :alias).to_a
     @a1 = @all.select{|x| x.type_id == 1 && x.id == @id1}.first
@@ -98,7 +100,7 @@ class ZshController < ApplicationController
     @a5 = @all.select{|x| x.type_id == 5 && x.id == @id5}.first
     @a6 = @all.select{|x| x.type_id == 6 && x.id == @id6}.first
     not_found if @a1.nil? && @a2.nil? && @a3.nil? && @a4.nil? && @a5.nil? && @a6.nil?
-    @title = build_xgt_title(@a1, @a2, @a3, @a4, @a5, @a6)
+    @title = build_xgt_title(@a1, @a2, @a3, @a4, @a5, @a6, @is_new, @is_hot)
     @items = get_dg_items(@title, @page)
     @r = ZshProduct.all
     if @a1
@@ -125,14 +127,20 @@ class ZshController < ApplicationController
       @r = @r.where("title like ?", "%#{@a6.name}%")
       @ks << @a6.name
     end
-    @r = @r.select(:id, :title, :dtitle, :mainPic, :actualPrice, :originalPrice).limit(10).offset(10 * page).to_a
+    if @is_new == 1
+      @r = @r.order("id desc")
+    end
+    if @is_hot == 1
+      @r = @r.order("monthSales desc")
+    end
+    @r = @r.select(:id, :title, :dtitle, :mainPic, :actualPrice, :originalPrice, :monthSales).limit(10).offset(10 * page).to_a
     @ss = ZshShop.where(id: (1..43).to_a.sample(5)).select(:id, :shopName, :shopLogo)
     @path = request.path + "/"
     render "xgt_all"
   end
 
-  def build_xgt_title(a1, a2, a3, a4, a5, a6)
-    "#{a6.nil? ? '' : a6.name}#{a1.nil? ? '' : a1.name}#{a2.nil? ? '' : a2.name}#{a3.nil? ? '' : a3.name}#{a4.nil? ? '' : a4.name}#{a5.nil? ? '' : a5.name}装饰画"
+  def build_xgt_title(a1, a2, a3, a4, a5, a6, is_new, is_hot)
+    "#{is_new == 1 ? '2022年新款' : ''}#{is_hot == 1 ? "2022年#{Time.now.month}月热销" : ''}#{a6.nil? ? '' : a6.name}#{a1.nil? ? '' : a1.name}#{a2.nil? ? '' : a2.name}#{a3.nil? ? '' : a3.name}#{a4.nil? ? '' : a4.name}#{a5.nil? ? '' : a5.name}装饰画"
   end
 
   def get_dg_items(keyword, page)

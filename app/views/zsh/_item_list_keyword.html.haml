@@ -7,7 +7,7 @@
           .product-box
             %a{href: "/zp/#{sku.id}/", title: "#{sku.dtitle.empty? ? sku.title : sku.dtitle}"}
               %img{src: "#{sku.mainPic}", alt: "#{sku.dtitle.empty? ? sku.title : sku.dtitle}"}
-              %p.title #{sku.dtitle.empty? ? sku.title.gsub(keyword, "<strong>#{keyword}</strong>").html_safe : sku.dtitle.gsub(keyword, "<strong>#{keyword}</strong>").html_safe}
+              %p.title #{sku.dtitle.empty? ? keywords.inject(sku.title){|r, e| r.gsub(e, "<strong>#{e}</strong>")}.html_safe : keywords.inject(sku.dtitle){|r, e| r.gsub(e, "<strong>#{e}</strong>")}.html_safe} 
               %p.price 
                 ￥#{sku.actualPrice}
                 %span.o-price 原价￥#{sku.originalPrice}

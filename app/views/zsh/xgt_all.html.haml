@@ -30,7 +30,7 @@
         %p.desc{style: "line-height: 60px;font-size: 18px;color: #555;font-weight: 600;"}
           %a{href: "/zs/#{s.id}/"}
             #{s.shopName}
-  = render partial: "item_list_keyword", locals: {skus: @r, keyword: @ks[0]}
+  = render partial: "item_list_keyword", locals: {skus: @r, keywords: @ks}
 
 = render partial: "layouts/footer"
 = render partial: "js_part"

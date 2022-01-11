@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   #get "zxgt/0-0-0-0-:id-0-0-0-0-0", to: "zsh#xgt_only_1", id: /\d+/
   #get "zxgt/0-0-0-0-0-:id-0-0-0-0", to: "zsh#xgt_only_1", id: /\d+/
   get "zxgt/:id1-:id2-:id3-:id4-:id5-:id6-0-0-0-0", to: "zsh#xgt"
+  get "zxgt/:id1-:id2-:id3-:id4-:id5-:id6-0-0-0-0/new", to: "zsh#xgt"
+  get "zxgt/:id1-:id2-:id3-:id4-:id5-:id6-0-0-0-0/hot", to: "zsh#xgt"
   #get "zxgt/0-0-0-0-0-0-0-0-0-0", to: "zsh#xgt"
   #get "zpic/0-0-0-0-0-0-0-0-0-0", to: "zsh#pic"
   #get "zbuy/0-0-0-0-0-0-0-0-0-0", to: "zsh#buy"

@@ -35,3 +35,9 @@
       %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-0-0-0-0-0/", class: "#{@id6 == 0 ? "red" : ""}"} 不限
       - @all.select{|a| a.type_id == 6}.each do |item|
         %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{item.id}-0-0-0-0/", class: "#{item.id == @id6 ? "red" : ""}"} #{item.name}
+  .attr-row
+    .attr-header 筛选
+    .attr-items
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/", class: "#{@is_new != 1 && @is_hot != 1 ? "red" : ""}"} 不限
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/new/", class: "#{@is_new == 1 ? "red" : ""}"} 最新
+      %a.attr-item{href: "/zxgt/#{@id1}-#{@id2}-#{@id3}-#{@id4}-#{@id5}-#{@id6}-0-0-0-0/hot/", class: "#{@is_hot == 1 ? "red" : ""}"} 最热
